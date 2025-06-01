@@ -1,0 +1,53 @@
+.job_card {
+  border-radius: 5px;
+  box-shadow: 0 0 5px #0004;
+  color: var(--text-color-a);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  user-select: none;
+}
+
+.Offer {
+  box-shadow: 0 0 5px var(--offer-color);
+}
+.Applied {
+  box-shadow: 0 0 5px var(--applied-color);
+}
+.Interview {
+  box-shadow: 0 0 5px var(--interview-color);
+}
+.Rejected {
+  box-shadow: 0 0 5px var(--rejected-color);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+
+.actions {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  gap: 5px;
+  margin-top: 10px;
+}
+
+.info {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 5px;
+
+  & span {
+    display: flex;
+    place-items: center;
+  }
+}
+
+.description {
+  margin-top: 5px;
+}

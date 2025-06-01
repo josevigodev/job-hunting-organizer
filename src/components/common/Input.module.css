@@ -1,0 +1,21 @@
+.input {
+  width: 100%;
+  padding: 8px 10px;
+  border: 2px solid #89a8b2;
+  border-radius: 10px;
+  resize: none;
+  font-size: 0.9em;
+  font-family: inherit;
+
+  &:focus-visible {
+    outline: none;
+  }
+}
+
+.search {
+  font-size: 1em;
+  background-color: transparent;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+}

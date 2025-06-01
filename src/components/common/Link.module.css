@@ -1,0 +1,35 @@
+.link {
+  padding: 2px 5px;
+  border-radius: 10px;
+  color: #fff;
+  text-decoration: none;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  span {
+    display: flex;
+    place-items: center;
+  }
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.Applied {
+  background-color: #89a8b2;
+}
+
+.Interview {
+  background-color: #f0a04b;
+}
+
+.Rejected {
+  background-color: #da6c6c;
+}
+
+.Offer {
+  background-color: #b0db9c;
+}

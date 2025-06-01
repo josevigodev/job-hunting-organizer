@@ -1,0 +1,44 @@
+.button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--text-color-b);
+  display: flex;
+  place-items: center;
+  transition: scale 0.3s ease;
+
+  &:hover {
+    scale: 1.1;
+  }
+
+  &.edit:hover {
+    color: #9ec6f3;
+  }
+
+  &.delete:hover {
+    color: #da6c6c;
+  }
+
+  &.add {
+    color: #fff;
+    background-color: #9ec6f3;
+    padding: 5px 8px;
+    font-weight: bold;
+    border-radius: 8px;
+  }
+
+  &.add_form {
+    justify-content: center;
+    width: 100%;
+    color: #fff;
+    background-color: #89a8b2;
+    padding: 5px 8px;
+    font-weight: bold;
+    border-radius: 8px;
+
+    &:hover {
+      scale: 1;
+      opacity: 0.9;
+    }
+  }
+}

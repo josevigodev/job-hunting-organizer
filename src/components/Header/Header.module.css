@@ -1,0 +1,35 @@
+.header {
+  margin: 0 auto;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.hero {
+  display: flex;
+  justify-content: space-between;
+}
+
+.filter {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.filter_options {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.search {
+  border-radius: 10px;
+  border: 2px solid #89a8b2;
+  padding: 4px 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  color: #89a8b2;
+}

@@ -1,0 +1,45 @@
+.job_column {
+  border: 2px solid #f0a04b;
+  border-radius: 10px;
+  padding: 10px 20px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 20px;
+
+  &.Offer {
+    border-color: var(--offer-color);
+  }
+
+  &.Applied {
+    border-color: var(--applied-color);
+  }
+
+  &.Interview {
+    border-color: var(--interview-color);
+  }
+
+  &.Rejected {
+    border-color: var(--rejected-color);
+  }
+}
+
+.title {
+  text-align: center;
+}
+
+.Offer {
+  color: var(--offer-color);
+}
+
+.Applied {
+  color: var(--applied-color);
+}
+
+.Interview {
+  color: var(--interview-color);
+}
+
+.Rejected {
+  color: var(--rejected-color);
+}

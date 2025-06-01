@@ -1,0 +1,60 @@
+:root {
+  --text-color-a: #666;
+  --text-color-b: #888;
+  --offer-color: #b0db9c;
+  --applied-color: #89a8b2;
+  --interview-color: #f0a04b;
+  --rejected-color: #da6c6c;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+}
+
+.layout-container {
+  min-height: 100vh;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+header {
+  width: 100%;
+  position: sticky;
+  top: 0;
+  background-color: #9ec6f366;
+  padding: 10px 0;
+  box-shadow: 0 0 20px #9ec6f366;
+  backdrop-filter: blur(10px);
+}
+
+h1 {
+  color: var(--text-color-a);
+}
+
+main {
+  height: 100%;
+  flex: 1;
+}
+
+footer {
+  height: 10dvh;
+  background-color: #777;
+  display: flex;
+  justify-content: center;
+  color: #fff;
+  align-items: center;
+
+  a {
+    margin-left: 5px;
+  }
+}
