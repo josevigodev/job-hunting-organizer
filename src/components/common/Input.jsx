@@ -1,6 +1,6 @@
 import styles from './Input.module.css';
 
-export function Input({ type, category, id, required, placeholder }) {
+export function Input({ type, category, id, required, placeholder, label }) {
   return type === 'text' ? (
     <input
       placeholder={placeholder}
@@ -11,17 +11,22 @@ export function Input({ type, category, id, required, placeholder }) {
       minLength={2}
     />
   ) : type === 'select' ? (
-    <select className={styles.input} id={id} required={required}>
-      <option value=''></option>
-      <option value=''></option>
-      <option value=''></option>
-      <option value=''></option>
+    <select
+      className={`${styles[category]} ${styles.input}`}
+      id={id}
+      required={required}
+      aria-label={label}
+    >
+      <option value='worplace'>Workplace</option>
+      <option value='Onsite'>Onsite</option>
+      <option value='Remote'>Remote</option>
+      <option value='Hybrid'>Hybrid</option>
     </select>
   ) : type === 'date' ? (
     <input className={styles.input} id={id} required={required} type='date' />
   ) : type === 'number' ? (
     <input
-      className={styles.input}
+      className={`${styles.input} ${styles[category]}`}
       id={id}
       required={required}
       type='number'

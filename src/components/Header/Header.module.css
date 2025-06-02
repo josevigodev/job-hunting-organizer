@@ -3,7 +3,7 @@
   max-width: 500px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 20px;
 }
 
 .hero {
@@ -28,8 +28,43 @@
   border: 2px solid #89a8b2;
   padding: 4px 8px;
   display: flex;
-  align-items: center;
+  align-items: start;
   gap: 10px;
   flex: 1;
   color: #89a8b2;
+
+  & label {
+    display: flex;
+    place-items: center;
+  }
+}
+
+.filter_wrapper {
+  border-radius: 10px;
+  border: 2px solid #89a8b2;
+  padding: 4px 8px;
+  position: relative;
+
+  &:has(input[type='number']),
+  & label {
+    cursor: text;
+  }
+
+  &:has(select),
+  & select {
+    cursor: pointer;
+  }
+
+  & label {
+    position: absolute;
+    top: 3px;
+    left: 5px;
+    color: var(--text-color-c);
+    user-select: none;
+    transition: transform 0.2s ease;
+  }
+
+  & input:focus-visible ~ label {
+    transform: translateY(-23px);
+  }
 }

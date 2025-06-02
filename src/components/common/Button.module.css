@@ -21,10 +21,11 @@
 
   &.add {
     color: #fff;
-    background-color: #9ec6f3;
-    padding: 5px 8px;
+    background-color: #89a8b2;
+    padding: 5px 10px;
     font-weight: bold;
     border-radius: 8px;
+    font-size: 0.9em;
   }
 
   &.add_form {

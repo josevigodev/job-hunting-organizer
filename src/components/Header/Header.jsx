@@ -2,9 +2,11 @@ import { useId } from 'react';
 import { Button } from '../common/Button';
 import { Input } from '../common/Input';
 import styles from './Header.module.css';
+import { SearchIcon } from '../common/Icons';
 
 export function Header() {
   const searchId = useId();
+  const minSalaryId = useId();
   return (
     <header>
       <div className={styles.header}>
@@ -14,15 +16,28 @@ export function Header() {
         </div>
         <form className={styles.filter}>
           <div className={styles.search}>
-            <label aria-hidden aria-label='search' htmlFor={searchId}>
-              @
+            <label aria-hidden aria-label='Search' htmlFor={searchId}>
+              <SearchIcon />
             </label>
-            <Input id={searchId} type='text' category='search' />
+            <Input
+              placeholder='Search'
+              id={searchId}
+              type='text'
+              category='search'
+            />
           </div>
           <div className={styles.filter_options}>
-            <button>Category</button>
-            <button>Date</button>
-            <button>Min salary</button>
+            <div className={styles.filter_wrapper}>
+              <Input id={minSalaryId} type='number' category='minSalary' />
+              <label htmlFor={minSalaryId}>Min salary</label>
+            </div>
+            <div className={styles.filter_wrapper}>
+              <Input
+                label='Filter by workplace'
+                type='select'
+                category='workplace'
+              />
+            </div>
           </div>
         </form>
       </div>
