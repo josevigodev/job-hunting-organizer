@@ -8,6 +8,9 @@ import {
 } from '../common/Icons';
 import styles from './JobCard.module.css';
 import { Button } from '../common/Button';
+import { useContext, useState } from 'react';
+import { JobsContext } from '../../contexts/JobsContext.';
+import { JobForm } from '../JobForm/JobForm';
 
 export function JobCard({
   state,
@@ -17,10 +20,15 @@ export function JobCard({
   salary,
   date,
   description,
+  id,
+  jobData,
 }) {
-  console.log(state);
+  const [active, setActive] = useState('');
+  const { deleteJob } = useContext(JobsContext);
+
   return (
     <article className={`${styles.job_card} ${styles[state]}`}>
+      <JobForm edit job={jobData} active={active} setActive={setActive} />
       <div className={styles.header}>
         <h3 className={styles.title}>{company}</h3>
       </div>
@@ -48,10 +56,10 @@ export function JobCard({
             <LinkIcon />
           </span>
         </Link>
-        <Button type='edit'>
+        <Button handleClick={() => setActive('form')} type='edit'>
           <EditIcon />
         </Button>
-        <Button type='delete'>
+        <Button handleClick={() => deleteJob(id)} type='delete'>
           <TrashIcon />
         </Button>
       </div>

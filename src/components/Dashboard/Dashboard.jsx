@@ -13,7 +13,7 @@ export function Dashboard() {
     <main className={styles.dashboard}>
       <JobColumn title='Offer'>
         {groupedJobs.Offer?.map((job) => (
-          <JobCard key={job.id} {...job} />
+          <JobCard key={job.id} {...job} jobData={job} />
         ))}
       </JobColumn>
 

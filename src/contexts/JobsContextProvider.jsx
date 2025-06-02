@@ -29,8 +29,23 @@ export function JobsContextProvider({ children }) {
     ]);
   };
 
+  const editJob = ({ id, newJob }) => {
+    setJobs((prevJobs) =>
+      prevJobs.map((job) => {
+        if (id === job.id) {
+          return newJob;
+        }
+        return job;
+      })
+    );
+  };
+
+  const deleteJob = (id) => {
+    setJobs((prevJobs) => prevJobs.filter((job) => job.id !== id));
+  };
+
   return (
-    <JobsContext.Provider value={{ jobs, addJob }}>
+    <JobsContext.Provider value={{ jobs, addJob, deleteJob, editJob }}>
       {children}
     </JobsContext.Provider>
   );

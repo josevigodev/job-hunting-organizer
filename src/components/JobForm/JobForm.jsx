@@ -5,16 +5,18 @@ import { CloseIcon } from '../common/Icons';
 import { Button } from '../common/Button';
 import { JobsContext } from '../../contexts/JobsContext.';
 
-export function JobForm({ active, setActive }) {
-  const [data, setData] = useState({
-    company: '',
-    job: '',
-    link: '',
-    salary: 0,
-    date: '',
-    description: '',
-  });
-  const { addJob } = useContext(JobsContext);
+const emptyForm = {
+  company: '',
+  job: '',
+  link: '',
+  salary: 0,
+  date: '',
+  description: '',
+};
+
+export function JobForm({ active, setActive, edit, job }) {
+  const [data, setData] = useState(edit ? job : emptyForm);
+  const { addJob, editJob } = useContext(JobsContext);
 
   const companyId = useId();
   const jobId = useId();
@@ -25,6 +27,12 @@ export function JobForm({ active, setActive }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (edit) {
+      editJob({ id: job.id, newJob: data });
+      setActive('');
+      return;
+    }
+
     addJob({ newJob: data });
     setActive('');
   };
@@ -40,7 +48,12 @@ export function JobForm({ active, setActive }) {
     <dialog open={active === 'form'} className={styles.dialog}>
       <form onSubmit={handleSubmit} className={styles.form}>
         <div className={styles.close_button_container}>
-          <Button handleClick={() => setActive('')}>
+          <Button
+            handleClick={() => {
+              setActive('');
+              setData(edit ? job : emptyForm);
+            }}
+          >
             <CloseIcon />
           </Button>
         </div>
@@ -115,7 +128,26 @@ export function JobForm({ active, setActive }) {
           />
         </div>
 
-        <Button type='add_form'>Add</Button>
+        {edit ? (
+          <div className={styles.buttons_wrapper}>
+            <Button type='add_form' functionality='submit'>
+              Save
+            </Button>
+            <Button
+              type='add_form'
+              handleClick={() => {
+                setActive('');
+                setData(edit ? job : emptyForm);
+              }}
+            >
+              Discard
+            </Button>
+          </div>
+        ) : (
+          <Button type='add_form' functionality='submit'>
+            Add
+          </Button>
+        )}
       </form>
     </dialog>
   );
