@@ -1,13 +1,19 @@
+import { useState } from 'react';
 import { Dashboard } from './components/Dashboard/Dashboard';
 import { Header } from './components/Header/Header';
 import { JobForm } from './components/JobForm/JobForm';
+import { JobsContextProvider } from './contexts/JobsContextProvider';
 
 function App() {
+  const [active, setActive] = useState('');
+
   return (
     <div className='layout-container'>
-      <Header />
-      <JobForm />
-      <Dashboard />
+      <Header setActive={setActive} />
+      <JobsContextProvider>
+        {active === 'form' && <JobForm active={active} setActive={setActive} />}
+        <Dashboard />
+      </JobsContextProvider>
       <footer>
         <div className='footer-info-container'>
           <p>

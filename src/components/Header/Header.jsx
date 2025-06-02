@@ -4,15 +4,18 @@ import { Input } from '../common/Input';
 import styles from './Header.module.css';
 import { SearchIcon } from '../common/Icons';
 
-export function Header() {
+export function Header({ setActive }) {
   const searchId = useId();
   const minSalaryId = useId();
+
   return (
     <header>
       <div className={styles.header}>
         <div className={styles.hero}>
           <h1>Job Hunt Organizer</h1>
-          <Button type='add'>Add job</Button>
+          <Button handleClick={() => setActive('form')} type='add'>
+            Add job
+          </Button>
         </div>
         <form className={styles.filter}>
           <div className={styles.search}>

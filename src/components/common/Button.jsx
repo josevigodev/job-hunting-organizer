@@ -1,8 +1,12 @@
 import styles from './Button.module.css';
 
-export function Button({ children, type }) {
+export function Button({ children, type, handleClick }) {
   return (
-    <button aria-label={type} className={`${styles.button} ${styles[type]}`}>
+    <button
+      onClick={handleClick}
+      aria-label={type}
+      className={`${styles.button} ${styles[type]}`}
+    >
       {children}
     </button>
   );

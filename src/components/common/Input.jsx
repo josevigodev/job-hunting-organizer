@@ -1,8 +1,19 @@
 import styles from './Input.module.css';
 
-export function Input({ type, category, id, required, placeholder, label }) {
+export function Input({
+  type,
+  category,
+  id,
+  required,
+  placeholder,
+  label,
+  value,
+  handleChange,
+}) {
   return type === 'text' ? (
     <input
+      onChange={handleChange}
+      value={value}
       placeholder={placeholder}
       id={id}
       required={required}
@@ -23,9 +34,18 @@ export function Input({ type, category, id, required, placeholder, label }) {
       <option value='Hybrid'>Hybrid</option>
     </select>
   ) : type === 'date' ? (
-    <input className={styles.input} id={id} required={required} type='date' />
+    <input
+      onChange={handleChange}
+      value={value}
+      className={styles.input}
+      id={id}
+      required={required}
+      type='date'
+    />
   ) : type === 'number' ? (
     <input
+      onChange={handleChange}
+      value={value}
       className={`${styles.input} ${styles[category]}`}
       id={id}
       required={required}
@@ -36,6 +56,8 @@ export function Input({ type, category, id, required, placeholder, label }) {
     />
   ) : type === 'textarea' ? (
     <textarea
+      onChange={handleChange}
+      value={value}
       placeholder={placeholder}
       className={styles.input}
       maxLength={120}

@@ -2,7 +2,6 @@ import { Link } from '../common/Link';
 import {
   CalendarIcon,
   CoinIcon,
-  DescriptionIcon,
   EditIcon,
   LinkIcon,
   TrashIcon,
@@ -10,33 +9,40 @@ import {
 import styles from './JobCard.module.css';
 import { Button } from '../common/Button';
 
-export function JobCard({ state }) {
+export function JobCard({
+  state,
+  company,
+  job,
+  link,
+  salary,
+  date,
+  description,
+}) {
+  console.log(state);
   return (
     <article className={`${styles.job_card} ${styles[state]}`}>
       <div className={styles.header}>
-        <h3 className={styles.title}>Google</h3>
+        <h3 className={styles.title}>{company}</h3>
       </div>
-      <h4>Frontend Developer</h4>
+      <h4>{job}</h4>
       <div className={styles.info}>
         <span>
           <CoinIcon />
         </span>
-        <span>$1200 / month</span>
+        <span>${salary} / month</span>
       </div>
 
       <div className={styles.info}>
         <span>
           <CalendarIcon />
         </span>
-        <span>12-6-2025</span>
+        <span>{date}</span>
       </div>
 
-      <p className={styles.description}>
-        The best job of all time with greate salary at Google Enterprise
-      </p>
+      <p className={styles.description}>{description}</p>
 
       <div className={styles.actions}>
-        <Link state={state}>
+        <Link to={link} state={state}>
           <span>Go</span>
           <span>
             <LinkIcon />
