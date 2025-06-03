@@ -23,12 +23,13 @@ export function Input({
     />
   ) : type === 'select' ? (
     <select
+      onChange={handleChange}
       className={`${styles[category]} ${styles.input}`}
       id={id}
       required={required}
       aria-label={label}
     >
-      <option value='worplace'>Workplace</option>
+      <option value='workplace'>Workplace</option>
       <option value='Onsite'>Onsite</option>
       <option value='Remote'>Remote</option>
       <option value='Hybrid'>Hybrid</option>
@@ -46,6 +47,7 @@ export function Input({
     <input
       onChange={handleChange}
       value={value}
+      placeholder={placeholder}
       className={`${styles.input} ${styles[category]}`}
       id={id}
       required={required}

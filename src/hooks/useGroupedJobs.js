@@ -1,8 +1,8 @@
 import { useMemo } from "react";
 
-export function useGroupedJobs (jobs) {
+export function useGroupedJobs ({jobs}) {
   const groupedJobs = useMemo(() => {
-    return jobs.reduce((acc, job) => {
+    return jobs?.reduce((acc, job) => {
       const key = job.state;
       if(!acc[key]) acc[key] = [];
 

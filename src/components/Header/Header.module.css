@@ -45,26 +45,13 @@
   padding: 4px 8px;
   position: relative;
 
-  &:has(input[type='number']),
-  & label {
+  &:has(input[type='number']) {
     cursor: text;
+    width: 110px;
   }
 
   &:has(select),
   & select {
     cursor: pointer;
-  }
-
-  & label {
-    position: absolute;
-    top: 3px;
-    left: 5px;
-    color: var(--text-color-c);
-    user-select: none;
-    transition: transform 0.2s ease;
-  }
-
-  & input:focus-visible ~ label {
-    transform: translateY(-23px);
   }
 }

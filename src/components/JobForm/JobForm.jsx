@@ -11,6 +11,7 @@ const emptyForm = {
   link: '',
   salary: 0,
   date: '',
+  workplace: 'workplace',
   description: '',
 };
 
@@ -23,6 +24,7 @@ export function JobForm({ active, setActive, edit, job }) {
   const linkId = useId();
   const salaryId = useId();
   const dateId = useId();
+  const workplaceId = useId();
   const descriptionId = useId();
 
   const handleSubmit = (e) => {
@@ -113,6 +115,17 @@ export function JobForm({ active, setActive, edit, job }) {
               id={dateId}
               required
               type='date'
+            />
+          </div>
+
+          <div className={styles.field}>
+            <label htmlFor={workplaceId}>Date: </label>
+            <Input
+              handleChange={(e) => handleChange({ e, prop: 'workplace' })}
+              value={data.workplace}
+              id={workplaceId}
+              required
+              type='select'
             />
           </div>
         </div>

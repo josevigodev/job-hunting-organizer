@@ -20,6 +20,7 @@ export function JobCard({
   salary,
   date,
   description,
+  workplace,
   id,
   jobData,
 }) {
@@ -45,6 +46,12 @@ export function JobCard({
           <CalendarIcon />
         </span>
         <span>{date}</span>
+      </div>
+      <div className={styles.info}>
+        <span>
+          <CalendarIcon />
+        </span>
+        <span>{workplace}</span>
       </div>
 
       <p className={styles.description}>{description}</p>
