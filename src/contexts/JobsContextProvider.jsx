@@ -1,47 +1,33 @@
-import { useState } from 'react';
+import { useReducer } from 'react';
 import { JobsContext } from './JobsContext.';
+import { jobsReducer } from '../reducers/jobsReducer';
+import { getLocalStorage } from '../utils/localStorage';
 
-let nextId = 2;
-
-const initialJob = {
-  company: 'Google',
-  job: 'Frontend Web Developer',
-  link: 'https://linkedin.com/google-job',
-  salary: 1200,
-  date: '2025-06-04',
-  description:
-    'The best job of all time with greate salary at Google Enterprise',
-  state: 'Offer',
-  id: 1,
-};
+const initialJobs = getLocalStorage('jobs') || [];
 
 export function JobsContextProvider({ children }) {
-  const [jobs, setJobs] = useState([initialJob]);
+  const [jobs, dispatch] = useReducer(jobsReducer, initialJobs);
 
   const addJob = ({ newJob }) => {
-    setJobs((prevJobs) => [
-      ...prevJobs,
-      {
-        ...newJob,
-        id: nextId++,
-        state: 'Offer',
-      },
-    ]);
+    dispatch({
+      type: 'added_job',
+      newJob: newJob,
+    });
   };
 
   const editJob = ({ id, newJob }) => {
-    setJobs((prevJobs) =>
-      prevJobs.map((job) => {
-        if (id === job.id) {
-          return newJob;
-        }
-        return job;
-      })
-    );
+    dispatch({
+      type: 'edited_job',
+      newJob: newJob,
+      id: id,
+    });
   };
 
   const deleteJob = (id) => {
-    setJobs((prevJobs) => prevJobs.filter((job) => job.id !== id));
+    dispatch({
+      type: 'deleted_job',
+      id: id,
+    });
   };
 
   return (
