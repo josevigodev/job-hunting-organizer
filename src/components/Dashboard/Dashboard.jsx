@@ -3,34 +3,72 @@ import { JobColumn } from '../JobColumn/JobColumn';
 import styles from './Dashboard.module.css';
 import { useGroupedJobs } from '../../hooks/useGroupedJobs';
 import { useFilterJobs } from '../../hooks/useFilterJobs';
+import { useState } from 'react';
 
 export function Dashboard() {
   const { jobs } = useFilterJobs();
   const groupedJobs = useGroupedJobs({ jobs });
+  const [isDraggingOver, setIsDraggingOver] = useState('');
 
   return (
     <main className={styles.dashboard}>
-      <JobColumn title='Offer'>
+      <JobColumn
+        isDraggingOver={isDraggingOver}
+        setIsDraggingOver={setIsDraggingOver}
+        title='Offer'
+      >
         {groupedJobs.Offer?.map((job) => (
-          <JobCard key={job.id} {...job} jobData={job} />
+          <JobCard
+            setIsDraggingOver={setIsDraggingOver}
+            key={job.id}
+            {...job}
+            jobData={job}
+          />
         ))}
       </JobColumn>
 
-      <JobColumn title='Applied'>
+      <JobColumn
+        isDraggingOver={isDraggingOver}
+        setIsDraggingOver={setIsDraggingOver}
+        title='Applied'
+      >
         {groupedJobs.Applied?.map((job) => (
-          <JobCard key={job.id} {...job} />
+          <JobCard
+            setIsDraggingOver={setIsDraggingOver}
+            key={job.id}
+            {...job}
+            jobData={job}
+          />
         ))}
       </JobColumn>
 
-      <JobColumn title='Interview'>
+      <JobColumn
+        isDraggingOver={isDraggingOver}
+        setIsDraggingOver={setIsDraggingOver}
+        title='Interview'
+      >
         {groupedJobs.Interview?.map((job) => (
-          <JobCard key={job.id} {...job} />
+          <JobCard
+            setIsDraggingOver={setIsDraggingOver}
+            key={job.id}
+            {...job}
+            jobData={job}
+          />
         ))}
       </JobColumn>
 
-      <JobColumn title='Rejected'>
+      <JobColumn
+        isDraggingOver={isDraggingOver}
+        setIsDraggingOver={setIsDraggingOver}
+        title='Rejected'
+      >
         {groupedJobs.Rejected?.map((job) => (
-          <JobCard key={job.id} {...job} />
+          <JobCard
+            setIsDraggingOver={setIsDraggingOver}
+            key={job.id}
+            {...job}
+            jobData={job}
+          />
         ))}
       </JobColumn>
     </main>

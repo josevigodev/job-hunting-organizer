@@ -3,10 +3,10 @@ import { getLocalStorage, updateLocalStorage } from "../utils/localStorage";
 let nextId = getLocalStorage('nextId') || 1;
 
 export const jobsReducer = (jobs, action) => {
-  const { type, newJob, id } = action;
+  const { type, newJob, id, newState } = action;
   switch (type) {
     case 'added_job': {
-      const newState =  [
+      const jobUpdate =  [
         ...jobs,
         {
           ...newJob,
@@ -15,28 +15,44 @@ export const jobsReducer = (jobs, action) => {
         },
       ];
 
-      updateLocalStorage('jobs', newState);
+      updateLocalStorage('jobs', jobUpdate);
       updateLocalStorage('nextId', nextId++);
-      return newState;
+      return jobUpdate;
     }
 
     case 'edited_job': {
-      const newState = jobs.map((job) => {
+      const jobUpdate = jobs.map((job) => {
         if (id === job.id) {
           return newJob;
         }
         return job;
       });
 
-      updateLocalStorage('jobs', newState);
-      return newState;
+      updateLocalStorage('jobs', jobUpdate);
+      return jobUpdate;
     }
 
     case 'deleted_job': {
-      const newState = jobs.filter((job) => job.id !== id);
+      const jobUpdate = jobs.filter((job) => job.id !== id);
 
-      updateLocalStorage('jobs', newState);
-      return newState;
+      updateLocalStorage('jobs', jobUpdate);
+      return jobUpdate;
+    }
+
+    case 'changed_state': {
+      const jobUpdate = jobs.map(job => {
+        if (job.id === id) {
+          return {
+            ...job,
+            state: newState
+          }
+        } else {
+          return job;
+        }
+      })
+
+      updateLocalStorage('jobs', jobUpdate)
+      return jobUpdate
     }
 
     default: {

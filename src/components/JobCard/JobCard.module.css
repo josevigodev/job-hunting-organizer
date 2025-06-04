@@ -1,14 +1,19 @@
 .job_card {
   border-radius: 5px;
-  box-shadow: 0 0 5px #0004;
   color: var(--text-color-a);
   padding: 10px;
   display: flex;
   flex-direction: column;
+  -webkit-user-select: none;
   user-select: none;
+  cursor: grab;
   background-color: #fff;
   animation: show 0.4s ease both;
   z-index: 10;
+
+  &:active {
+    cursor: grabbing;
+  }
 }
 
 .Offer {
@@ -22,6 +27,22 @@
 }
 .Rejected {
   box-shadow: 0 0 5px var(--rejected-color);
+}
+
+.dragged {
+  outline-offset: -2px;
+  &.Offer {
+    outline: 2px solid var(--offer-color);
+  }
+  &.Applied {
+    outline: 2px solid var(--applied-color);
+  }
+  &.Interview {
+    outline: 2px solid var(--interview-color);
+  }
+  &.Rejected {
+    outline: 2px solid var(--rejected-color);
+  }
 }
 
 .header {

@@ -6,25 +6,40 @@
   gap: 20px;
   height: 600px;
   overflow-y: auto;
+  transition: box-shadow 0.2s ease;
 
   &.Offer {
-    box-shadow: 0 0 7px var(--offer-color);
     background-color: #b0db9c11;
   }
 
   &.Applied {
-    box-shadow: 0 0 7px var(--applied-color);
     background-color: #89a8b211;
   }
 
   &.Interview {
-    box-shadow: 0 0 7px var(--interview-color);
     background-color: #f0a04b11;
   }
 
   &.Rejected {
-    box-shadow: 0 0 7px var(--rejected-color);
     background-color: #da6c6c11;
+  }
+}
+
+.drag_over {
+  &.Offer {
+    box-shadow: 0 0 7px var(--offer-color);
+  }
+
+  &.Applied {
+    box-shadow: 0 0 7px var(--applied-color);
+  }
+
+  &.Interview {
+    box-shadow: 0 0 7px var(--interview-color);
+  }
+
+  &.Rejected {
+    box-shadow: 0 0 7px var(--rejected-color);
   }
 }
 

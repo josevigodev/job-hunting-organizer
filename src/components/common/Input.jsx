@@ -24,6 +24,7 @@ export function Input({
     />
   ) : type === 'select' ? (
     <select
+      value={value}
       onChange={handleChange}
       className={`${styles[category]} ${styles.input}`}
       id={id}

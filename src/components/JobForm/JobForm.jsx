@@ -4,6 +4,7 @@ import { useContext, useId, useState } from 'react';
 import { CloseIcon } from '../common/Icons';
 import { Button } from '../common/Button';
 import { JobsContext } from '../../contexts/JobsContext.';
+import { useInputError } from '../../hooks/useInputError';
 
 const emptyForm = {
   company: '',
@@ -17,7 +18,7 @@ const emptyForm = {
 
 export function JobForm({ active, setActive, edit, job }) {
   const [data, setData] = useState(edit ? job : emptyForm);
-  const [error, setError] = useState(null);
+  const { error } = useInputError({ data });
   const { addJob, editJob } = useContext(JobsContext);
 
   const companyId = useId();
@@ -30,10 +31,8 @@ export function JobForm({ active, setActive, edit, job }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (data.workplace === 'select') {
-      setError('Select workplace');
-      return;
-    }
+    if (data.workplace === 'select') return;
+
     if (edit) {
       editJob({ id: job.id, newJob: data });
       setActive('');
@@ -45,12 +44,6 @@ export function JobForm({ active, setActive, edit, job }) {
   };
 
   const handleChange = ({ e, prop }) => {
-    if (prop === 'workplace' && e.target.value === 'select') {
-      setError('Select workplace');
-    } else if (prop === 'workplace' && e.target.value !== 'select') {
-      setError(null);
-    }
-
     setData((prevData) => ({
       ...prevData,
       [prop]: e.target.value,
@@ -104,6 +97,7 @@ export function JobForm({ active, setActive, edit, job }) {
             required
             type='text'
           />
+          <span className={styles.link_error}>{error}</span>
         </div>
 
         <div className={styles.inline}>
@@ -139,7 +133,6 @@ export function JobForm({ active, setActive, edit, job }) {
               required
               type='select'
             />
-            <span className={styles.workplace_error}>{error}</span>
           </div>
         </div>
 

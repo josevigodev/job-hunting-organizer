@@ -30,8 +30,18 @@ export function JobsContextProvider({ children }) {
     });
   };
 
+  const changeState = (id, newState) => {
+    dispatch({
+      type: 'changed_state',
+      id: id,
+      newState: newState,
+    });
+  };
+
   return (
-    <JobsContext.Provider value={{ jobs, addJob, deleteJob, editJob }}>
+    <JobsContext.Provider
+      value={{ jobs, addJob, deleteJob, editJob, changeState }}
+    >
       {children}
     </JobsContext.Provider>
   );

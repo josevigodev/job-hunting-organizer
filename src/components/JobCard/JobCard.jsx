@@ -24,14 +24,36 @@ export function JobCard({
   workplace,
   id,
   jobData,
+  setIsDraggingOver,
 }) {
   const [active, setActive] = useState('');
+  const [dragged, setDragged] = useState(false);
   const { deleteJob } = useContext(JobsContext);
+
+  const handleDragStart = (e) => {
+    const { dataTransfer } = e;
+    dataTransfer.setData('text/plain', id);
+    setDragged(true);
+  };
+
+  const handleDragEnd = () => {
+    setIsDraggingOver('');
+    setDragged(false);
+  };
 
   return (
     <>
-      <JobForm edit job={jobData} active={active} setActive={setActive} />
-      <article className={`${styles.job_card} ${styles[state]}`}>
+      {active === 'form' && (
+        <JobForm edit job={jobData} active={active} setActive={setActive} />
+      )}
+      <article
+        draggable='true'
+        onDragStart={handleDragStart}
+        onDragEnd={handleDragEnd}
+        className={`${styles.job_card} ${styles[state]} ${
+          dragged ? styles.dragged : ''
+        }`}
+      >
         <div className={styles.header}>
           <h3 className={styles.title}>{company}</h3>
         </div>
