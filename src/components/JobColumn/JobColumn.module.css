@@ -9,37 +9,45 @@
 
   &.Offer {
     border-color: var(--offer-color);
+    box-shadow: 0 0 7px var(--offer-color);
   }
 
   &.Applied {
     border-color: var(--applied-color);
+    box-shadow: 0 0 7px var(--applied-color);
   }
 
   &.Interview {
     border-color: var(--interview-color);
+    box-shadow: 0 0 7px var(--interview-color);
   }
 
   &.Rejected {
     border-color: var(--rejected-color);
+    box-shadow: 0 0 7px var(--rejected-color);
   }
 }
 
 .title {
   text-align: center;
-}
 
-.Offer {
-  color: var(--offer-color);
-}
+  &.Offer {
+    color: var(--offer-color);
+    border-bottom: 3px solid var(--offer-color);
+  }
 
-.Applied {
-  color: var(--applied-color);
-}
+  &.Applied {
+    color: var(--applied-color);
+    border-bottom: 3px solid var(--applied-color);
+  }
 
-.Interview {
-  color: var(--interview-color);
-}
+  &.Interview {
+    color: var(--interview-color);
+    border-bottom: 3px solid var(--interview-color);
+  }
 
-.Rejected {
-  color: var(--rejected-color);
+  &.Rejected {
+    color: var(--rejected-color);
+    border-bottom: 3px solid var(--rejected-color);
+  }
 }

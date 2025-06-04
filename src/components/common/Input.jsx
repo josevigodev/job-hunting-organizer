@@ -9,6 +9,7 @@ export function Input({
   label,
   value,
   handleChange,
+  form,
 }) {
   return type === 'text' ? (
     <input
@@ -29,7 +30,11 @@ export function Input({
       required={required}
       aria-label={label}
     >
-      <option value='workplace'>Workplace</option>
+      {form ? (
+        <option value='select'>Select</option>
+      ) : (
+        <option value='workplace'>Workplace</option>
+      )}
       <option value='Onsite'>Onsite</option>
       <option value='Remote'>Remote</option>
       <option value='Hybrid'>Hybrid</option>

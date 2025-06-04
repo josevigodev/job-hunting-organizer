@@ -1,5 +1,3 @@
-import { useContext } from 'react';
-import { JobsContext } from '../../contexts/JobsContext.';
 import { JobCard } from '../JobCard/JobCard';
 import { JobColumn } from '../JobColumn/JobColumn';
 import styles from './Dashboard.module.css';
@@ -7,9 +5,8 @@ import { useGroupedJobs } from '../../hooks/useGroupedJobs';
 import { useFilterJobs } from '../../hooks/useFilterJobs';
 
 export function Dashboard() {
-  const { jobs } = useContext(JobsContext);
-  const { filteredJobs } = useFilterJobs(jobs);
-  const groupedJobs = useGroupedJobs({ jobs: filteredJobs });
+  const { jobs } = useFilterJobs();
+  const groupedJobs = useGroupedJobs({ jobs });
 
   return (
     <main className={styles.dashboard}>

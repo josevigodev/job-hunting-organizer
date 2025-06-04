@@ -11,12 +11,13 @@ const emptyForm = {
   link: '',
   salary: 0,
   date: '',
-  workplace: 'workplace',
+  workplace: 'select',
   description: '',
 };
 
 export function JobForm({ active, setActive, edit, job }) {
   const [data, setData] = useState(edit ? job : emptyForm);
+  const [error, setError] = useState(null);
   const { addJob, editJob } = useContext(JobsContext);
 
   const companyId = useId();
@@ -29,6 +30,10 @@ export function JobForm({ active, setActive, edit, job }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (data.workplace === 'select') {
+      setError('Select workplace');
+      return;
+    }
     if (edit) {
       editJob({ id: job.id, newJob: data });
       setActive('');
@@ -40,6 +45,12 @@ export function JobForm({ active, setActive, edit, job }) {
   };
 
   const handleChange = ({ e, prop }) => {
+    if (prop === 'workplace' && e.target.value === 'select') {
+      setError('Select workplace');
+    } else if (prop === 'workplace' && e.target.value !== 'select') {
+      setError(null);
+    }
+
     setData((prevData) => ({
       ...prevData,
       [prop]: e.target.value,
@@ -119,14 +130,16 @@ export function JobForm({ active, setActive, edit, job }) {
           </div>
 
           <div className={styles.field}>
-            <label htmlFor={workplaceId}>Date: </label>
+            <label htmlFor={workplaceId}>Workplace: </label>
             <Input
+              form
               handleChange={(e) => handleChange({ e, prop: 'workplace' })}
               value={data.workplace}
               id={workplaceId}
               required
               type='select'
             />
+            <span className={styles.workplace_error}>{error}</span>
           </div>
         </div>
 

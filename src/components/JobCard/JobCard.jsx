@@ -4,6 +4,7 @@ import {
   CoinIcon,
   EditIcon,
   LinkIcon,
+  MonitorIcon,
   TrashIcon,
 } from '../common/Icons';
 import styles from './JobCard.module.css';
@@ -49,7 +50,7 @@ export function JobCard({
       </div>
       <div className={styles.info}>
         <span>
-          <CalendarIcon />
+          <MonitorIcon />
         </span>
         <span>{workplace}</span>
       </div>
