@@ -9,12 +9,14 @@
   backdrop-filter: blur(5px);
   display: grid;
   place-items: center;
+  z-index: 40;
 }
 
 .form {
   background-color: #fff;
   padding: 15px;
   border-radius: 10px;
+  z-index: 50;
 }
 
 .field {

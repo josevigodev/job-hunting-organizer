@@ -2,6 +2,6 @@
   max-width: 1200px;
   margin: 30px auto;
   display: grid;
-  grid-template-columns: repeat(4, minmax(230px, 1fr));
+  grid-template-columns: repeat(4, 250px);
   gap: 20px;
 }
