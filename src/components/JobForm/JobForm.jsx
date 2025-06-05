@@ -55,6 +55,7 @@ export function JobForm({ active, setActive, edit, job }) {
       <form onSubmit={handleSubmit} className={styles.form}>
         <div className={styles.close_button_container}>
           <Button
+            type='close'
             handleClick={() => {
               setActive('');
               setData(edit ? job : emptyForm);

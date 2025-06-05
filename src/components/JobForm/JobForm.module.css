@@ -1,4 +1,4 @@
-.dialog[open] {
+.dialog {
   position: fixed;
   top: 0;
   left: 0;
@@ -10,6 +10,15 @@
   display: grid;
   place-items: center;
   z-index: 40;
+
+  &[open] {
+    opacity: 1;
+    transition: opacity 0.2s ease, display 0.3s ease allow-discrete;
+
+    @starting-style {
+      opacity: 0;
+    }
+  }
 }
 
 .form {
@@ -20,6 +29,7 @@
   display: flex;
   flex-direction: column;
   gap: 15px;
+  animation: entrance 0.4s ease both;
 }
 
 .field {
@@ -59,4 +69,15 @@
 
 .link_error {
   left: 0;
+}
+
+@keyframes entrance {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0px);
+    opacity: 1;
+  }
 }

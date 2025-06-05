@@ -1,4 +1,4 @@
-import { useContext, useId } from 'react';
+import { useContext, useEffect, useId } from 'react';
 import { Button } from '../common/Button';
 import { Input } from '../common/Input';
 import styles from './Header.module.css';
@@ -17,6 +17,27 @@ export function Header({ setActive }) {
     }));
   };
 
+  useEffect(() => {
+    const containers = document.querySelectorAll(`.${styles.filter_wrapper}`);
+
+    containers.forEach((container) => {
+      const input =
+        container.querySelector('input') || container.querySelector('select');
+
+      input.addEventListener('focus', () => {
+        containers.forEach((other) => {
+          if (other !== container) {
+            other.classList.add(styles.dimmed);
+          }
+        });
+      });
+
+      input.addEventListener('blur', () => {
+        containers.forEach((other) => other.classList.remove(styles.dimmed));
+      });
+    });
+  }, []);
+
   return (
     <header>
       <div className={styles.header}>
@@ -27,11 +48,13 @@ export function Header({ setActive }) {
           </Button>
         </div>
         <form className={styles.filter}>
-          <div className={styles.search}>
+          <div className={`${styles.filter_wrapper} ${styles.search}`}>
             <label aria-hidden aria-label='Search' htmlFor={searchId}>
               <SearchIcon />
             </label>
             <Input
+              handleChange={(e) => handleChange({ e, prop: 'search' })}
+              value={filter.search}
               placeholder='Search'
               id={searchId}
               type='text'

@@ -10,6 +10,13 @@ export function useFilterJobs () {
     return jobs.filter(job => {
       return +job.salary >= filter.minSalary && (
         filter.workplace === 'workplace' || filter.workplace === job.workplace
+      ) && (
+        filter.search === '' ||
+        job.company.toLowerCase().includes(filter.search.toLowerCase()) ||
+        job.job.toLowerCase().includes(filter.search.toLowerCase()) ||
+        job.link.toLowerCase().includes(filter.search.toLowerCase()) ||
+        job.date.toLowerCase().includes(filter.search.toLowerCase()) ||
+        job.description.toLowerCase().includes(filter.search.toLowerCase())
       )
     })
   }, [filter])

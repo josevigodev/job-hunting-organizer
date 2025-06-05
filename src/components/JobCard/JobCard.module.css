@@ -8,8 +8,9 @@
   user-select: none;
   cursor: grab;
   background-color: #fff;
-  animation: show 0.4s ease both;
   z-index: 10;
+  transition: transform 0.1s ease;
+  animation: show 0.4s ease both;
 
   &:active {
     cursor: grabbing;

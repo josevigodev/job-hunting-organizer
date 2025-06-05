@@ -4,42 +4,42 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-  height: 600px;
+  height: 580px;
   overflow-y: auto;
   transition: box-shadow 0.2s ease;
 
   &.Offer {
-    background-color: #b0db9c11;
+    border: 3px solid var(--offer-color);
   }
 
   &.Applied {
-    background-color: #89a8b211;
+    border: 3px solid var(--applied-color);
   }
 
   &.Interview {
-    background-color: #f0a04b11;
+    border: 3px solid var(--interview-color);
   }
 
   &.Rejected {
-    background-color: #da6c6c11;
+    border: 3px solid var(--rejected-color);
   }
 }
 
 .drag_over {
   &.Offer {
-    box-shadow: 0 0 7px var(--offer-color);
+    box-shadow: 0 0 10px var(--offer-color);
   }
 
   &.Applied {
-    box-shadow: 0 0 7px var(--applied-color);
+    box-shadow: 0 0 10px var(--applied-color);
   }
 
   &.Interview {
-    box-shadow: 0 0 7px var(--interview-color);
+    box-shadow: 0 0 10px var(--interview-color);
   }
 
   &.Rejected {
-    box-shadow: 0 0 7px var(--rejected-color);
+    box-shadow: 0 0 10px var(--rejected-color);
   }
 }
 

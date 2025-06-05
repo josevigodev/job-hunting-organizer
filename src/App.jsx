@@ -19,20 +19,6 @@ function App() {
           <Dashboard />
         </JobsContextProvider>
       </FilterContextProvider>
-      <footer>
-        <div className='footer-info-container'>
-          <p>
-            © 2025 Job Hunting Organizer | Built with React by
-            <a
-              href='https://github.com/josevigodev/'
-              target='_blank'
-              rel='noopener norreferer'
-            >
-              Jose Vigo
-            </a>
-          </p>
-        </div>
-      </footer>
     </div>
   );
 }

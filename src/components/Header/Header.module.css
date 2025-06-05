@@ -9,12 +9,16 @@
 .hero {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  padding-bottom: 5px;
+  border-bottom: 2px solid #89a8b2;
 }
 
 .filter {
   display: flex;
   gap: 10px;
   align-items: center;
+  animation: show-down 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.7s both;
 }
 
 .filter_options {
@@ -24,9 +28,6 @@
 }
 
 .search {
-  border-radius: 10px;
-  border: 2px solid #89a8b2;
-  padding: 4px 8px;
   display: flex;
   align-items: start;
   gap: 10px;
@@ -44,6 +45,7 @@
   border: 2px solid #89a8b2;
   padding: 4px 8px;
   position: relative;
+  transition: opacity 0.3s ease, scale 0.3s ease;
 
   &:has(input[type='number']) {
     cursor: text;
@@ -53,5 +55,25 @@
   &:has(select),
   & select {
     cursor: pointer;
+  }
+
+  &:has(input:focus-visible),
+  &:has(select:focus-visible) {
+    scale: 1.05;
+  }
+}
+
+.dimmed {
+  opacity: 0.5;
+}
+
+@keyframes show-down {
+  from {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

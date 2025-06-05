@@ -3,6 +3,7 @@ import { FilterContext } from './FilterContext';
 
 export function FilterContextProvider({ children }) {
   const [filter, setFilter] = useState({
+    search: '',
     workplace: 'workplace',
     minSalary: '',
   });
