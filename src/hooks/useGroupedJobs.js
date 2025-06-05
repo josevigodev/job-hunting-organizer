@@ -1,6 +1,9 @@
 import { useMemo } from "react";
+import { useFilterJobs } from "./useFilterJobs";
 
-export function useGroupedJobs ({jobs}) {
+export function useGroupedJobs () {
+  const { jobs } = useFilterJobs(); 
+  
   const groupedJobs = useMemo(() => {
     return jobs?.reduce((acc, job) => {
       const key = job.state;
@@ -8,7 +11,12 @@ export function useGroupedJobs ({jobs}) {
 
       acc[key].push(job)
       return acc;
-    }, {})
+    }, {
+      Offer: [],
+      Applied: [],
+      Interview: [],
+      Rejected:[]
+    })
   }, [jobs])
 
   return groupedJobs;

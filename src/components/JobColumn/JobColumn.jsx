@@ -1,10 +1,11 @@
-import { useContext } from 'react';
+import { memo, useContext } from 'react';
 import styles from './JobColumn.module.css';
 import { JobsContext } from '../../contexts/JobsContext.';
+import { JobCard } from '../JobCard/JobCard';
 
-export function JobColumn({
+export const JobColumn = memo(function ({
   title,
-  children,
+  jobCards,
   isDraggingOver,
   setIsDraggingOver,
 }) {
@@ -12,11 +13,11 @@ export function JobColumn({
   const { changeState } = useContext(JobsContext);
 
   const handleDrop = (e) => {
+    setIsDraggingOver('');
     const { dataTransfer } = e;
     const id = dataTransfer.getData('text/plain');
 
     const job = jobs.find((job) => job.id === +id);
-    setIsDraggingOver('');
 
     if (job.state === title) return;
     changeState(+id, title);
@@ -41,7 +42,14 @@ export function JobColumn({
       }`}
     >
       <h2 className={`${styles.title} ${styles[title]}`}>{title}</h2>
-      {children}
+      {jobCards.map((job) => (
+        <JobCard
+          setIsDraggingOver={setIsDraggingOver}
+          key={job.id}
+          {...job}
+          jobData={job}
+        />
+      ))}
     </section>
   );
-}
+});
