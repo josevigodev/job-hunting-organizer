@@ -82,7 +82,7 @@ export function JobCard({
 
         <div className={styles.actions}>
           <Link to={link} state={state}>
-            <span>Go</span>
+            <span>Job Offer</span>
             <span>
               <LinkIcon />
             </span>

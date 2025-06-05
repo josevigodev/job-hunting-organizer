@@ -1,12 +1,13 @@
+import styles from './Header.module.css';
 import { useContext, useEffect, useId } from 'react';
 import { Button } from '../common/Button';
 import { Input } from '../common/Input';
-import styles from './Header.module.css';
 import { SearchIcon } from '../common/Icons';
 import { FilterContext } from '../../contexts/FilterContext';
 
 export function Header({ setActive }) {
   const { filter, setFilter } = useContext(FilterContext);
+
   const searchId = useId();
   const minSalaryId = useId();
 
