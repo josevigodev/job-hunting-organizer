@@ -1,12 +1,20 @@
-# React + Vite
+# 🗃️ Job Hunt Organizer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern **job tracking application** that helps you organize your job search process using a clean and interactive **Kanban board**. You can add jobs, group them by status (Offer, Applied, Interview, Rejected), and move them between columns with **drag & drop**. All data is saved locally using `localStorage`, so nothing is lost between sessions.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
 
-## Expanding the ESLint configuration
+- Add, edit, and delete job entries.
+- Orginize jobs by status: `Offer`, `Applied`, `Interview` and `Rejected`.
+- Fully interactive **Kanban-style board**.
+- Native **Drag & Drop API**;
+- Real-time search and filtering.
+- Persistent data with `localStorage`.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🧱 Tech Stack
+
+- **React** + **Vite**
+- **CSS Modules**
+- **JavaScript (ES6+)**
