@@ -4,7 +4,7 @@ A modern **job tracking application** that helps you organize your job search pr
 
 📸 Screenshots
 
-<img src='/screenshot.png' width='600'/>
+<img src='./public/screenshot.png' width='600'/>
 
 ## 🚀 Features
 
