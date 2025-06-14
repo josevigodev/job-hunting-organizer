@@ -20,3 +20,31 @@ A modern **job tracking application** that helps you organize your job search pr
 - **React** + **Vite**
 - **CSS Modules**
 - **JavaScript (ES6+)**
+
+## Setup
+
+Clone the repository and install dependencies:
+
+```bash
+git clone https://github.com/josevigodev/job-hunting-organizer.git
+cd job-hunting-organizer
+npm install
+```
+
+Run de app localy:
+
+```bash
+npm run dev
+```
+
+Build for production:
+
+```bash
+npm run build
+```
+
+Preview the production build:
+
+```bash
+npm run preview
+```
