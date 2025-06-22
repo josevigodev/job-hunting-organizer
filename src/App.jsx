@@ -6,16 +6,14 @@ import { JobsContextProvider } from './contexts/JobsContextProvider';
 import { FilterContextProvider } from './contexts/FilterContextProvider';
 
 function App() {
-  const [active, setActive] = useState('');
+  const [active, setActive] = useState(false);
 
   return (
     <div className='layout-container'>
       <FilterContextProvider>
         <Header setActive={setActive} />
         <JobsContextProvider>
-          {active === 'form' && (
-            <JobForm active={active} setActive={setActive} />
-          )}
+          {active && <JobForm active={active} setActive={setActive} />}
           <Dashboard />
         </JobsContextProvider>
       </FilterContextProvider>

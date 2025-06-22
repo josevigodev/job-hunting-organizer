@@ -1,33 +1,16 @@
 import styles from './JobForm.module.css';
 import { Input } from '../common/Input';
-import { useContext, useId, useState } from 'react';
+import { useContext, useState } from 'react';
 import { CloseIcon } from '../common/Icons';
 import { Button } from '../common/Button';
 import { JobsContext } from '../../contexts/JobsContext.';
 import { useInputError } from '../../hooks/useInputError';
-
-const emptyForm = {
-  company: '',
-  job: '',
-  link: '',
-  salary: 0,
-  date: '',
-  workplace: 'select',
-  description: '',
-};
+import { emptyForm, INPUT_FIELDS } from '../../consts';
 
 export function JobForm({ active, setActive, edit, job }) {
   const [data, setData] = useState(edit ? job : emptyForm);
   const { error } = useInputError({ data });
   const { addJob, editJob } = useContext(JobsContext);
-
-  const companyId = useId();
-  const jobId = useId();
-  const linkId = useId();
-  const salaryId = useId();
-  const dateId = useId();
-  const workplaceId = useId();
-  const descriptionId = useId();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -35,12 +18,12 @@ export function JobForm({ active, setActive, edit, job }) {
 
     if (edit) {
       editJob({ id: job.id, newJob: data });
-      setActive('');
+      setActive(false);
       return;
     }
 
     addJob({ newJob: data });
-    setActive('');
+    setActive(false);
   };
 
   const handleChange = ({ e, prop }) => {
@@ -51,102 +34,36 @@ export function JobForm({ active, setActive, edit, job }) {
   };
 
   return (
-    <dialog open={active === 'form'} className={styles.dialog}>
+    <dialog open={active} className={styles.dialog}>
       <form onSubmit={handleSubmit} className={styles.form}>
         <div className={styles.close_button_container}>
           <Button
             type='close'
             handleClick={() => {
-              setActive('');
+              setActive(false);
               setData(edit ? job : emptyForm);
             }}
           >
             <CloseIcon />
           </Button>
         </div>
-        <div className={styles.field}>
-          <label htmlFor={companyId}>Company:</label>
-          <Input
-            handleChange={(e) => handleChange({ e, prop: 'company' })}
-            value={data.company}
-            placeholder='Google, Amazon...'
-            id={companyId}
-            required
-            type='text'
-          />
-        </div>
 
-        <div className={styles.field}>
-          <label htmlFor={jobId}>Job:</label>
-          <Input
-            handleChange={(e) => handleChange({ e, prop: 'job' })}
-            value={data.job}
-            placeholder='Frontend Web Developer'
-            id={jobId}
-            required
-            type='text'
-          />
-        </div>
-
-        <div className={styles.field}>
-          <label htmlFor={linkId}>Job's link:</label>
-          <Input
-            handleChange={(e) => handleChange({ e, prop: 'link' })}
-            value={data.link}
-            placeholder='https://linkedin.com/google-job'
-            id={linkId}
-            required
-            type='text'
-          />
-          <span className={styles.link_error}>{error}</span>
-        </div>
-
-        <div className={styles.inline}>
-          <div className={styles.field}>
-            <label htmlFor={salaryId}>Salary ($ / month):</label>
-            <Input
-              handleChange={(e) => handleChange({ e, prop: 'salary' })}
-              value={data.salary}
-              id={salaryId}
-              required
-              type='number'
-            />
-          </div>
-
-          <div className={styles.field}>
-            <label htmlFor={dateId}>Date: </label>
-            <Input
-              handleChange={(e) => handleChange({ e, prop: 'date' })}
-              value={data.date}
-              id={dateId}
-              required
-              type='date'
-            />
-          </div>
-
-          <div className={styles.field}>
-            <label htmlFor={workplaceId}>Workplace: </label>
-            <Input
-              form
-              handleChange={(e) => handleChange({ e, prop: 'workplace' })}
-              value={data.workplace}
-              id={workplaceId}
-              required
-              type='select'
-            />
-          </div>
-        </div>
-
-        <div className={styles.field}>
-          <label htmlFor={descriptionId}>Description:</label>
-          <Input
-            handleChange={(e) => handleChange({ e, prop: 'description' })}
-            value={data.description}
-            placeholder='Web developer job with great salary...'
-            id={descriptionId}
-            type='textarea'
-          />
-        </div>
+        {Object.entries(INPUT_FIELDS).map(
+          ([, { label, type, prop, placeholder, required, hasError }]) => (
+            <div key={prop} className={styles.field}>
+              <label htmlFor={prop}>{label}</label>
+              <Input
+                handleChange={(e) => handleChange({ e, prop })}
+                value={data[prop]}
+                placeholder={placeholder}
+                id={prop}
+                type={type}
+                required={required}
+              />
+              {hasError && <span className={styles.link_error}>{error}</span>}
+            </div>
+          )
+        )}
 
         {edit ? (
           <div className={styles.buttons_wrapper}>
@@ -156,7 +73,7 @@ export function JobForm({ active, setActive, edit, job }) {
             <Button
               type='add_form'
               handleClick={() => {
-                setActive('');
+                setActive(false);
                 setData(edit ? job : emptyForm);
               }}
             >

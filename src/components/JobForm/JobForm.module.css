@@ -22,6 +22,7 @@
 }
 
 .form {
+  width: 400px;
   background-color: #fff;
   padding: 15px;
   border-radius: 10px;
@@ -38,12 +39,6 @@
   flex-direction: column;
   gap: 5px;
   color: var(--text-color-a);
-}
-
-.inline {
-  display: flex;
-  align-items: center;
-  gap: 20px;
 }
 
 .close_button_container {
