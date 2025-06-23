@@ -15,6 +15,7 @@ export const INPUT_FIELDS = {
     prop: 'company',
     placeholder: 'Google, Amazon...',
     required: true,
+    hasError: false,
   },
   job: {
     label: 'Job:',
@@ -22,6 +23,7 @@ export const INPUT_FIELDS = {
     prop: 'job',
     placeholder: 'Frontend Web Developer',
     required: true,
+    hasError: false,
   },
   jobLink: {
     label: "Job's link:",
@@ -35,24 +37,32 @@ export const INPUT_FIELDS = {
     label: 'Salary ($ / month):',
     type: 'number',
     prop: 'salary',
+    placeholder: '',
     required: true,
+    hasError: false,
   },
   date: {
     label: 'Date:',
     type: 'date',
     prop: 'date',
+    placeholder: '',
     required: true,
+    hasError: false,
   },
   workplace: {
     label: 'Workplace:',
     type: 'select',
     prop: 'workplace',
+    placeholder: '',
     required: true,
+    hasError: false,
   },
   description: {
     label: 'Description:',
     type: 'textarea',
     prop: 'description',
+    required: false,
     placeholder: 'Web developer job with great salary...',
+    hasError: false,
   },
-};
+} as const;

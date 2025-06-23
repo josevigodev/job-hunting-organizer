@@ -1,36 +1,39 @@
 import styles from './JobForm.module.css';
-import { Input } from '../common/Input';
-import { useContext, useState } from 'react';
-import { CloseIcon } from '../common/Icons';
-import { Button } from '../common/Button';
-import { JobsContext } from '../../contexts/JobsContext.';
-import { useInputError } from '../../hooks/useInputError';
-import { emptyForm, INPUT_FIELDS } from '../../consts';
+import { Input } from '../common/Input.tsx';
+import React, { useContext, useState } from 'react';
+import { CloseIcon } from '../common/Icons.tsx';
+import { Button } from '../common/Button.tsx';
+import { JobsContext } from '../../contexts/JobsContext.ts';
+import { useInputError } from '../../hooks/useInputError.ts';
+import { emptyForm, INPUT_FIELDS } from '../../consts.ts';
+import { Job } from '../../types';
 
-export function JobForm({ active, setActive, edit, job }) {
+interface Props {
+  active: boolean;
+  setActive: (value: boolean) => void;
+  edit: boolean;
+  job: Job;
+}
+
+export const JobForm: React.FC<Props> = ({ active, setActive, edit, job }) => {
   const [data, setData] = useState(edit ? job : emptyForm);
-  const { error } = useInputError({ data });
-  const { addJob, editJob } = useContext(JobsContext);
+  const { error } = useInputError({ data: data.link });
+  const jobsContext = useContext(JobsContext);
+  if (!jobsContext) return;
+  const { addJob, editJob } = jobsContext;
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (data.workplace === 'select') return;
 
-    if (edit) {
-      editJob({ id: job.id, newJob: data });
+    if (edit && job) {
+      editJob({ id: job.id, newJob: data as Job });
       setActive(false);
       return;
     }
 
-    addJob({ newJob: data });
+    addJob({ newJob: data as Job });
     setActive(false);
-  };
-
-  const handleChange = ({ e, prop }) => {
-    setData((prevData) => ({
-      ...prevData,
-      [prop]: e.target.value,
-    }));
   };
 
   return (
@@ -53,7 +56,12 @@ export function JobForm({ active, setActive, edit, job }) {
             <div key={prop} className={styles.field}>
               <label htmlFor={prop}>{label}</label>
               <Input
-                handleChange={(e) => handleChange({ e, prop })}
+                handleChange={(e) => {
+                  setData((prevData) => ({
+                    ...prevData,
+                    [prop]: e.target.value,
+                  }));
+                }}
                 value={data[prop]}
                 placeholder={placeholder}
                 id={prop}
@@ -88,4 +96,4 @@ export function JobForm({ active, setActive, edit, job }) {
       </form>
     </dialog>
   );
-}
+};

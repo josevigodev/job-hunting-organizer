@@ -1,4 +1,4 @@
-import { Link } from '../common/Link';
+import { Link } from '../common/Link.tsx';
 import {
   CalendarIcon,
   CoinIcon,
@@ -6,14 +6,20 @@ import {
   LinkIcon,
   MonitorIcon,
   TrashIcon,
-} from '../common/Icons';
+} from '../common/Icons.tsx';
 import styles from './JobCard.module.css';
-import { Button } from '../common/Button';
-import { useContext, useState } from 'react';
-import { JobsContext } from '../../contexts/JobsContext.';
-import { JobForm } from '../JobForm/JobForm';
+import { Button } from '../common/Button.jsx';
+import React, { useContext, useState } from 'react';
+import { JobsContext } from '../../contexts/JobsContext.ts';
+import { JobForm } from '../JobForm/JobForm.tsx';
+import { JobState, type Job } from '../../types.ts';
 
-export function JobCard({
+interface Props extends Job {
+  jobData: Job;
+  setIsDraggingOver: (value: JobState | '') => void;
+}
+
+export const JobCard: React.FC<Props> = ({
   state,
   company,
   job,
@@ -25,13 +31,17 @@ export function JobCard({
   id,
   jobData,
   setIsDraggingOver,
-}) {
-  const [active, setActive] = useState('');
+}) => {
+  const [active, setActive] = useState(false);
   const [dragged, setDragged] = useState(false);
-  const { deleteJob } = useContext(JobsContext);
 
-  const handleDragStart = (e) => {
+  const jobsContext = useContext(JobsContext);
+  if (!jobsContext) return;
+  const { deleteJob } = jobsContext;
+
+  const handleDragStart = (e: React.DragEvent) => {
     const { dataTransfer } = e;
+    if (!id) return;
     dataTransfer.setData('text/plain', id);
     setDragged(true);
   };
@@ -43,14 +53,14 @@ export function JobCard({
 
   return (
     <>
-      {active === 'form' && (
+      {active && (
         <JobForm edit job={jobData} active={active} setActive={setActive} />
       )}
       <article
         draggable='true'
         onDragStart={handleDragStart}
         onDragEnd={handleDragEnd}
-        className={`${styles.job_card} ${styles[state]} ${
+        className={`${styles.job_card} ${styles[state ?? '']} ${
           dragged ? styles.dragged : ''
         }`}
       >
@@ -87,7 +97,7 @@ export function JobCard({
               <LinkIcon />
             </span>
           </Link>
-          <Button handleClick={() => setActive('form')} type='edit'>
+          <Button handleClick={() => setActive(true)} type='edit'>
             <EditIcon />
           </Button>
           <Button handleClick={() => deleteJob(id)} type='delete'>
@@ -97,4 +107,4 @@ export function JobCard({
       </article>
     </>
   );
-}
+};

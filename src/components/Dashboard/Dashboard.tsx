@@ -1,15 +1,15 @@
 import styles from './Dashboard.module.css';
-import { JobColumn } from '../JobColumn/JobColumn';
-import { useGroupedJobs } from '../../hooks/useGroupedJobs';
+import { JobColumn } from '../JobColumn/JobColumn.tsx';
+import { useGroupedJobs } from '../../hooks/useGroupedJobs.ts';
 import { useState } from 'react';
 
-export function Dashboard() {
+export const Dashboard = () => {
   const groupedJobs = useGroupedJobs();
   const [isDraggingOver, setIsDraggingOver] = useState('');
 
   return (
     <main className={styles.dashboard}>
-      {Object.entries(groupedJobs).map(([state, jobCards]) => (
+      {Object.entries(!groupedJobs).map(([state, jobCards]) => (
         <JobColumn
           key={state}
           isDraggingOver={isDraggingOver}
@@ -20,4 +20,4 @@ export function Dashboard() {
       ))}
     </main>
   );
-}
+};

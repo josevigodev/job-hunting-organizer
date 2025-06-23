@@ -1,6 +1,22 @@
+import React from 'react';
 import styles from './Input.module.css';
 
-export function Input({
+interface Props {
+  type: 'text' | 'select' | 'date' | 'number' | 'textarea';
+  category?: string;
+  id?: string;
+  required?: boolean;
+  placeholder?: string;
+  label?: string;
+  value: string | number | undefined;
+  handleChange: (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >
+  ) => void;
+}
+
+export const Input: React.FC<Props> = ({
   type,
   category,
   id,
@@ -9,8 +25,7 @@ export function Input({
   label,
   value,
   handleChange,
-  form,
-}) {
+}) => {
   return type === 'text' ? (
     <input
       onChange={handleChange}
@@ -18,24 +33,20 @@ export function Input({
       placeholder={placeholder}
       id={id}
       required={required}
-      className={`${styles[category]} ${styles.input}`}
+      className={`${styles[category ?? '']} ${styles.input}`}
       type='text'
       minLength={2}
     />
   ) : type === 'select' ? (
     <select
       value={value}
-      onChange={handleChange}
-      className={`${styles[category]} ${styles.input}`}
+      onChange={(e) => handleChange(e)}
+      className={`${styles[category ?? '']} ${styles.input}`}
       id={id}
       required={required}
       aria-label={label}
     >
-      {form ? (
-        <option value='select'>Select</option>
-      ) : (
-        <option value='workplace'>Workplace</option>
-      )}
+      <option value='workplace'>Workplace</option>
       <option value='Onsite'>Onsite</option>
       <option value='Remote'>Remote</option>
       <option value='Hybrid'>Hybrid</option>
@@ -54,7 +65,7 @@ export function Input({
       onChange={handleChange}
       value={value}
       placeholder={placeholder}
-      className={`${styles.input} ${styles[category]}`}
+      className={`${styles.input} ${styles[category ?? '']}`}
       id={id}
       required={required}
       type='number'
@@ -64,7 +75,7 @@ export function Input({
     />
   ) : type === 'textarea' ? (
     <textarea
-      onChange={handleChange}
+      onChange={(e) => handleChange(e)}
       value={value}
       placeholder={placeholder}
       className={styles.input}
@@ -73,4 +84,4 @@ export function Input({
       required={required}
     ></textarea>
   ) : undefined;
-}
+};

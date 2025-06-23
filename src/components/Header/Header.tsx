@@ -1,17 +1,31 @@
 import styles from './Header.module.css';
-import { useContext, useEffect, useId } from 'react';
-import { Button } from '../common/Button';
-import { Input } from '../common/Input';
-import { SearchIcon } from '../common/Icons';
-import { FilterContext } from '../../contexts/FilterContext';
+import React, { useContext, useEffect, useId } from 'react';
+import { Button } from '../common/Button.tsx';
+import { Input } from '../common/Input.tsx';
+import { SearchIcon } from '../common/Icons.tsx';
+import { FilterContext } from '../../contexts/FilterContext.ts';
 
-export function Header({ setActive }) {
-  const { filter, setFilter } = useContext(FilterContext);
+interface Props {
+  setActive: (value: boolean) => void;
+}
+
+export const Header: React.FC<Props> = ({ setActive }) => {
+  const filterContext = useContext(FilterContext);
+  if (!filterContext) return;
+  const { filter, setFilter } = filterContext;
 
   const searchId = useId();
   const minSalaryId = useId();
 
-  const handleChange = ({ e, prop }) => {
+  const handleChange = ({
+    e,
+    prop,
+  }: {
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >;
+    prop: string;
+  }) => {
     setFilter((prevFilter) => ({
       ...prevFilter,
       [prop]: e.target.value,
@@ -24,6 +38,7 @@ export function Header({ setActive }) {
     containers.forEach((container) => {
       const input =
         container.querySelector('input') || container.querySelector('select');
+      if (!input) return;
 
       input.addEventListener('focus', () => {
         containers.forEach((other) => {
@@ -44,7 +59,7 @@ export function Header({ setActive }) {
       <div className={styles.header}>
         <div className={styles.hero}>
           <h1>Job Hunt Organizer</h1>
-          <Button handleClick={() => setActive('form')} type='add'>
+          <Button handleClick={() => setActive(true)} type='add'>
             Add job
           </Button>
         </div>
@@ -87,4 +102,4 @@ export function Header({ setActive }) {
       </div>
     </header>
   );
-}
+};
