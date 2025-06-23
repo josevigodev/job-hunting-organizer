@@ -5,11 +5,12 @@ import { useState } from 'react';
 
 export const Dashboard = () => {
   const groupedJobs = useGroupedJobs();
+  if (!groupedJobs) return;
   const [isDraggingOver, setIsDraggingOver] = useState('');
 
   return (
     <main className={styles.dashboard}>
-      {Object.entries(!groupedJobs).map(([state, jobCards]) => (
+      {Object.entries(groupedJobs).map(([state, jobCards]) => (
         <JobColumn
           key={state}
           isDraggingOver={isDraggingOver}
