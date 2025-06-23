@@ -19,7 +19,7 @@ A modern **job tracking application** that helps you organize your job search pr
 
 - **React** + **Vite**
 - **CSS Modules**
-- **JavaScript (ES6+)**
+- **TypeScript**
 
 ## Setup
 
