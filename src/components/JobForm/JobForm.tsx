@@ -52,7 +52,10 @@ export const JobForm: React.FC<Props> = ({ active, setActive, edit, job }) => {
         </div>
 
         {Object.entries(INPUT_FIELDS).map(
-          ([, { label, type, prop, placeholder, required, hasError }]) => (
+          ([
+            ,
+            { label, type, prop, placeholder, required, hasError, dataTest },
+          ]) => (
             <div key={prop} className={styles.field}>
               <label htmlFor={prop}>{label}</label>
               <Input
@@ -62,6 +65,7 @@ export const JobForm: React.FC<Props> = ({ active, setActive, edit, job }) => {
                     [prop]: e.target.value,
                   }));
                 }}
+                dataTest={dataTest}
                 value={data[prop]}
                 placeholder={placeholder}
                 id={prop}
@@ -75,7 +79,11 @@ export const JobForm: React.FC<Props> = ({ active, setActive, edit, job }) => {
 
         {edit ? (
           <div className={styles.buttons_wrapper}>
-            <Button type='add_form' functionality='submit'>
+            <Button
+              dataTest='save-edited'
+              type='add_form'
+              functionality='submit'
+            >
               Save
             </Button>
             <Button
@@ -89,7 +97,7 @@ export const JobForm: React.FC<Props> = ({ active, setActive, edit, job }) => {
             </Button>
           </div>
         ) : (
-          <Button type='add_form' functionality='submit'>
+          <Button dataTest='add-job' type='add_form' functionality='submit'>
             Add
           </Button>
         )}

@@ -8,6 +8,7 @@ interface Props {
   title: string;
   jobCards: Jobs;
   isDraggingOver: string;
+  dataTest?: string;
   setIsDraggingOver: (value: string) => void;
 }
 
@@ -15,6 +16,7 @@ export const JobColumn: React.FC<Props> = ({
   title,
   jobCards,
   isDraggingOver,
+  dataTest,
   setIsDraggingOver,
 }) => {
   const jobsContext = useContext(JobsContext);
@@ -42,6 +44,7 @@ export const JobColumn: React.FC<Props> = ({
 
   return (
     <section
+      data-test={dataTest}
       onDrop={handleDrop}
       onDragOver={handleDragOver}
       onDragLeave={handleDragLeave}

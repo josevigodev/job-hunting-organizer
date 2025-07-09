@@ -5,6 +5,7 @@ interface Props {
   children: ReactNode;
   type: string;
   handleClick?: () => void;
+  dataTest?: string;
   functionality?: 'button' | 'submit' | 'reset' | undefined;
 }
 
@@ -13,9 +14,11 @@ export const Button: React.FC<Props> = ({
   type,
   handleClick,
   functionality,
+  dataTest,
 }) => {
   return (
     <button
+      data-test={dataTest}
       type={functionality ?? 'button'}
       onClick={handleClick}
       aria-label={type}

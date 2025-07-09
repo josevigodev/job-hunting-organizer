@@ -17,6 +17,7 @@ export const Dashboard = () => {
           setIsDraggingOver={setIsDraggingOver}
           title={state}
           jobCards={jobCards}
+          dataTest={state}
         />
       ))}
     </main>

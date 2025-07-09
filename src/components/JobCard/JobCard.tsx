@@ -57,6 +57,7 @@ export const JobCard: React.FC<Props> = ({
         <JobForm edit job={jobData} active={active} setActive={setActive} />
       )}
       <article
+        data-test='job-card'
         draggable='true'
         onDragStart={handleDragStart}
         onDragEnd={handleDragEnd}
@@ -97,7 +98,11 @@ export const JobCard: React.FC<Props> = ({
               <LinkIcon />
             </span>
           </Link>
-          <Button handleClick={() => setActive(true)} type='edit'>
+          <Button
+            dataTest='edit-form'
+            handleClick={() => setActive(true)}
+            type='edit'
+          >
             <EditIcon />
           </Button>
           <Button handleClick={() => deleteJob(id)} type='delete'>

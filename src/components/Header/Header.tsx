@@ -59,7 +59,11 @@ export const Header: React.FC<Props> = ({ setActive }) => {
       <div className={styles.header}>
         <div className={styles.hero}>
           <h1>Job Hunt Organizer</h1>
-          <Button handleClick={() => setActive(true)} type='add'>
+          <Button
+            dataTest='open-form'
+            handleClick={() => setActive(true)}
+            type='add'
+          >
             Add job
           </Button>
         </div>

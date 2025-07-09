@@ -3,6 +3,7 @@ import styles from './Input.module.css';
 
 interface Props {
   type: 'text' | 'select' | 'date' | 'number' | 'textarea';
+  dataTest?: string;
   category?: string;
   id?: string;
   required?: boolean;
@@ -24,10 +25,12 @@ export const Input: React.FC<Props> = ({
   placeholder,
   label,
   value,
+  dataTest,
   handleChange,
 }) => {
   return type === 'text' ? (
     <input
+      data-test={dataTest}
       onChange={handleChange}
       value={value}
       placeholder={placeholder}
@@ -39,6 +42,7 @@ export const Input: React.FC<Props> = ({
     />
   ) : type === 'select' ? (
     <select
+      data-test={dataTest}
       value={value}
       onChange={(e) => handleChange(e)}
       className={`${styles[category ?? '']} ${styles.input}`}
@@ -53,6 +57,7 @@ export const Input: React.FC<Props> = ({
     </select>
   ) : type === 'date' ? (
     <input
+      data-test={dataTest}
       onChange={handleChange}
       value={value}
       className={styles.input}
@@ -62,6 +67,7 @@ export const Input: React.FC<Props> = ({
     />
   ) : type === 'number' ? (
     <input
+      data-test={dataTest}
       onChange={handleChange}
       value={value}
       placeholder={placeholder}
@@ -75,6 +81,7 @@ export const Input: React.FC<Props> = ({
     />
   ) : type === 'textarea' ? (
     <textarea
+      data-test={dataTest}
       onChange={(e) => handleChange(e)}
       value={value}
       placeholder={placeholder}

@@ -17,5 +17,5 @@
     "skipLibCheck": true,
     "allowImportingTsExtensions": true
   },
-  "include": ["src", "src/types.d.ts"]
+  "include": ["**/*.ts", "**/*.tsx", "cypress/support/commands.ts"]
 }

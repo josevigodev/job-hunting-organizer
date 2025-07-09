@@ -16,6 +16,7 @@ export const INPUT_FIELDS = {
     placeholder: 'Google, Amazon...',
     required: true,
     hasError: false,
+    dataTest: 'company',
   },
   job: {
     label: 'Job:',
@@ -23,6 +24,7 @@ export const INPUT_FIELDS = {
     prop: 'job',
     placeholder: 'Frontend Web Developer',
     required: true,
+    dataTest: 'job',
     hasError: false,
   },
   jobLink: {
@@ -30,6 +32,7 @@ export const INPUT_FIELDS = {
     type: 'text',
     prop: 'link',
     placeholder: 'https://linkedin.com/google-job',
+    dataTest: 'job-link',
     required: true,
     hasError: true,
   },
@@ -39,6 +42,7 @@ export const INPUT_FIELDS = {
     prop: 'salary',
     placeholder: '',
     required: true,
+    dataTest: 'salary',
     hasError: false,
   },
   date: {
@@ -46,6 +50,7 @@ export const INPUT_FIELDS = {
     type: 'date',
     prop: 'date',
     placeholder: '',
+    dataTest: 'date',
     required: true,
     hasError: false,
   },
@@ -55,6 +60,7 @@ export const INPUT_FIELDS = {
     prop: 'workplace',
     placeholder: '',
     required: true,
+    dataTest: 'workplace',
     hasError: false,
   },
   description: {
@@ -63,6 +69,7 @@ export const INPUT_FIELDS = {
     prop: 'description',
     required: false,
     placeholder: 'Web developer job with great salary...',
+    dataTest: 'description',
     hasError: false,
   },
 } as const;
